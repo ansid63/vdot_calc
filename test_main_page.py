@@ -1,38 +1,35 @@
-from selenium.common.exceptions import NoSuchElementException
-
-from .pages.main_page import MainPage
+from pages.main_page import MainPage
 import time
 
 
 def test_positive_value(browser):
-    link = "http://www.attackpoint.org/trainingpaces.jsp"
-    new_user = MainPage(browser, link)
-    new_user.open()
-
-    #input info about user
-    new_user.fill_value_positive()
-    time.sleep(5)
-
-    # check field
-    new_user.check_numbers()
-
-def test_negative_value(browser):
-    link = "http://www.attackpoint.org/trainingpaces.jsp"
-    new_user = MainPage(browser, link)
-    new_user.open()
+    link = "https://runsmartproject.com/calculator/"
+    profile_page = MainPage(browser, link)
+    profile_page.open()
 
     # input info about user
-    new_user.fill_value_negative()
-    time.sleep(5)
+    profile_page.fill_value_positive()
 
-    # check field
-    try:
-        new_user.check_numbers()
-    except NoSuchElementException:
-        print('Негативные данные не прошли')
+    # submit data
+    profile_page.submit_data()
 
-    finally: print('Корректный негативный тест')
+    # check data in training fields
+    profile_page.check_data_in_training()
 
 
-
-
+# def test_negative_value(browser):
+#     link = "https://runsmartproject.com/calculator/"
+#     new_user = MainPage(browser, link)
+#     new_user.open()
+#
+#     # input info about user
+#     new_user.fill_value_negative()
+#     time.sleep(5)
+#
+#     # check field
+#     try:
+#         new_user.check_numbers()
+#     except NoSuchElementException:
+#         print('Негативные данные не прошли')
+#
+#     finally: print('Корректный негативный тест')
