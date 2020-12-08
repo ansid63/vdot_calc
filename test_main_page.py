@@ -1,5 +1,5 @@
 from pages.main_page import MainPage
-import time
+from pages.instraction_page import InstructionPage
 
 
 def test_positive_value(browser):
@@ -15,6 +15,11 @@ def test_positive_value(browser):
 
     # check data in training fields
     profile_page.check_data_in_training()
+
+    # check video on instruction page
+    profile_page.go_to_instruction()
+    instruction_page = InstructionPage(browser, browser.current_url)
+    instruction_page.check_video_on_page()
 
 
 # def test_negative_value(browser):

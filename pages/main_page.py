@@ -37,7 +37,7 @@ class MainPage(BasePage):
         # re module for clear data
         pace_arr = re.findall('[0-9]+', pace_str)
         pace_arr = [int(i) for i in pace_arr]
-        current_pace = [8, 0]  # current time min, sec
+        current_pace = [7, 20]  # current time min, sec
 
         # check current own pace and recommended pace
         if ((pace_arr[0] * 60) + pace_arr[1]) < ((current_pace[0] * 60) + current_pace[1]) < ((pace_arr[2] * 60) + pace_arr[3]):
@@ -45,8 +45,12 @@ class MainPage(BasePage):
         else:
             print(f'Recommended pace from {pace_arr[0]}:{pace_arr[1]} to {pace_arr[2]}:{pace_arr[3]}')
 
+    def go_to_instruction(self):
+        info_page = self.browser.find_element(*BasePageLocators.LINK_TO_INFO_PAGE)
+        info_page.click()
+
+
+
 
 #    def fill_value_negative(self):
 
-
-#    def check_numbers(self):
