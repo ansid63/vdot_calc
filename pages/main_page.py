@@ -2,6 +2,7 @@ from pages.base_page import BasePage
 from pages.locators import BasePageLocators
 from selenium.webdriver.support.ui import Select
 import re
+import logging
 
 
 class MainPage(BasePage):
@@ -41,9 +42,9 @@ class MainPage(BasePage):
 
         # check current own pace and recommended pace
         if ((pace_arr[0] * 60) + pace_arr[1]) < ((current_pace[0] * 60) + current_pace[1]) < ((pace_arr[2] * 60) + pace_arr[3]):
-            print("Current pace GOOD")
+            logging.info("Current pace GOOD")
         else:
-            print(f'Recommended pace from {pace_arr[0]}:{pace_arr[1]} to {pace_arr[2]}:{pace_arr[3]}')
+            logging.info(f'Recommended pace from {pace_arr[0]}:{pace_arr[1]} to {pace_arr[2]}:{pace_arr[3]}')
 
     def go_to_instruction(self):
         info_page = self.browser.find_element(*BasePageLocators.LINK_TO_INFO_PAGE)
